@@ -1,6 +1,6 @@
 .App{
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   background-repeat: no-repeat;
   background-size: contain;
   padding-top: 5rem;
@@ -24,4 +24,30 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
+}
+
+@media screen and (max-width: 80rem) {
+  .App{
+    padding-top: 3rem;
+  }
+}
+
+@media screen and (max-width: 60rem) {
+    .App{
+      min-height: 100vh;
+      height: unset;
+      padding-top: 2rem;
+    }
+
+    .dark{
+      background-image: url(./assets/images/bg-mobile-dark.jpg);
+    }
+
+    .light{
+      background-image: url(./assets/images/bg-mobile-light.jpg);
+    }
+
+    .todo{
+      width: 75%;
+    }
 }

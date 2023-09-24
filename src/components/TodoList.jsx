@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import TodoItem from './TodoItem';
 
-function TodoList({ todos, completeTodo, theme, setTodos }) {
+function TodoList({ todos, completeTodo, theme, setTodos, selectedTodo, deleteSelectedTodo }) {
   const remainingTodos = todos.filter((todo) => !todo.completed);
-
   const removeCompletedTodos = () => {
     const incompleteTodos = todos.filter((todo) => !todo.completed);
     setTodos(incompleteTodos);
@@ -29,6 +28,9 @@ function TodoList({ todos, completeTodo, theme, setTodos }) {
             completed={todo.completed}
             onComplete={() => completeTodo(index)}
             theme={theme}
+            select={() => selectedTodo(index)}
+            click = {todo.selected}
+            onDelete={() => deleteSelectedTodo()}
           />
         ))}
       </div>
@@ -41,6 +43,11 @@ function TodoList({ todos, completeTodo, theme, setTodos }) {
         </ul>
         <p onClick={removeCompletedTodos} className='remove'>Clear Completed</p>
       </div>
+      <ul className={`mobileLinks ${theme}Form`}>
+          <li onClick={() => setFilter('All')} className={`link ${filter=== 'All' ? 'active' : ''}`}>All</li>
+          <li onClick={() => setFilter('Active')} className={`link ${filter=== 'Active' ? 'active' : ''}`}>Active</li>
+          <li onClick={() => setFilter('Complete')} className={`link ${filter=== 'Complete' ? 'active' : ''}`}>Complete</li>
+      </ul>
     </div>
   );
 }
