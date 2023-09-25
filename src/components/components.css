@@ -110,8 +110,12 @@
     list-style: none;
 }
 
-.links li:hover{
+.darkHover:hover{
     color: hsl(0, 0%, 98%);
+}
+
+.lightHover:hover{
+    color: hsl(235, 19%, 35%);
 }
 
 .checkContainer{
@@ -220,11 +224,14 @@
         list-style: none;
     }
 
-    .TodoList{
-        max-height: unset;
-    }
-
     .inputField{
         font-size: .9rem;
     }
 }
+
+@media screen and (max-height: 37rem){
+    .TodoList{
+        max-height: unset;
+    }
+}
+

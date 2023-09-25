@@ -36,17 +36,17 @@ function TodoList({ todos, completeTodo, theme, setTodos, selectedTodo, deleteSe
       </div>
       <div className={`manipulate ${theme}Form`}>
         <p>{remainingTodos.length} items left</p>
-        <ul className='links'>
-          <li onClick={() => setFilter('All')} className={`link ${filter=== 'All' ? 'active' : ''}`}>All</li>
-          <li onClick={() => setFilter('Active')} className={`link ${filter=== 'Active' ? 'active' : ''}`}>Active</li>
-          <li onClick={() => setFilter('Complete')} className={`link ${filter=== 'Complete' ? 'active' : ''}`}>Complete</li>
+        <ul className={`links ${theme}hover`}>
+          <li onClick={() => setFilter('All')} className={`link ${filter=== 'All' ? 'active' : ''} ${theme}Hover`}>All</li>
+          <li onClick={() => setFilter('Active')} className={`link ${filter=== 'Active' ? 'active' : ''} ${theme}Hover`}>Active</li>
+          <li onClick={() => setFilter('Complete')} className={`link ${filter=== 'Complete' ? 'active' : ''} ${theme}Hover`}>Complete</li>
         </ul>
         <p onClick={removeCompletedTodos} className='remove'>Clear Completed</p>
       </div>
       <ul className={`mobileLinks ${theme}Form`}>
-          <li onClick={() => setFilter('All')} className={`link ${filter=== 'All' ? 'active' : ''}`}>All</li>
-          <li onClick={() => setFilter('Active')} className={`link ${filter=== 'Active' ? 'active' : ''}`}>Active</li>
-          <li onClick={() => setFilter('Complete')} className={`link ${filter=== 'Complete' ? 'active' : ''}`}>Complete</li>
+          <li onClick={() => setFilter('All')} className={`link ${filter=== 'All' ? 'active' : ''} ${theme}Hover`}>All</li>
+          <li onClick={() => setFilter('Active')} className={`link ${filter=== 'Active' ? 'active' : ''} ${theme}Hover`}>Active</li>
+          <li onClick={() => setFilter('Complete')} className={`link ${filter=== 'Complete' ? 'active' : ''} ${theme}Hover`}>Complete</li>
       </ul>
     </div>
   );
