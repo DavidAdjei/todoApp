@@ -129,6 +129,13 @@
     margin-inline: 1rem;
 }
 
+.TodoContent{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .mobileLinks{
     display: none;
 }

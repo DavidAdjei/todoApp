@@ -11,11 +11,13 @@ function TodoItem({ text, completed, onComplete, theme, onDelete }) {
       onMouseEnter={() => setShowDelete(true)}
       onMouseLeave={() => setShowDelete(false)}
     >
-      <div onClick={onComplete} className={`checkContainer ${completed ? 'checkBackground' : ''}`}>
+      <div className='TodoContent'>
+        <div onClick={onComplete} className={`checkContainer ${completed ? 'checkBackground' : ''}`}>
         <span className={`checkmark ${completed ? '' : 'hide'}`}></span>
+        </div>
+        <span className={`inputField ${completed ? 'completed' : ''} `}>{text}</span>
       </div>
-      <span className={`inputField ${completed ? 'completed' : ''} `}>{text}</span>
-      <button onClick={onDelete} className={`${showDelete ? '' : 'hide'}`}>
+      <button onClick={onDelete} className={`delete ${showDelete ? '' : 'hide'}`}>
         <img src={IconCross} alt="cross" />
       </button>
     </div>
