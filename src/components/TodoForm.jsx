@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
+import { useTheme } from '../theme/theme';
 
-function TodoForm({ addTodo, theme, setClicked, clicked }) {
+function TodoForm({ addTodo, setClicked, clicked }) {
   const [todoText, setTodoText] = useState('');
+  const [theme] = useTheme();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (todoText.trim() === '') return;
-    setClicked(!clicked);
-    addTodo(todoText);
-    setTodoText('');
+    if (todoText.trim() === '') {
+      alert('Can not submit empty todo')
+    } else {
+      setClicked(!clicked);
+      addTodo(todoText);
+      setTodoText('');
+    }
+    
   };
 
   return (

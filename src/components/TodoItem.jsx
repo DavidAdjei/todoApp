@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './components.css';
 import IconCross from '../assets/images/icon-cross.svg';
+import { useTheme } from '../theme/theme';
 
-function TodoItem({ text, completed, onComplete, theme, onDelete }) {
+function TodoItem({ text, completed, onComplete, onDelete }) {
   const [showDelete, setShowDelete] = useState(false);
+  const [theme] = useTheme();
 
   return (
     <div
