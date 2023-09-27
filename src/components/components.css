@@ -28,6 +28,7 @@
     border-radius: .1rem;
     display: flex;
     align-items: center;
+    border-radius: .5rem;
 }
 
 .inputField{
@@ -72,6 +73,10 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid hsl(234deg 2.66% 30.06%);
+}
+
+.TodoItem:hover{
+    cursor: pointer;
 }
 
 .todoComponent{
@@ -127,6 +132,7 @@
     justify-content: center;
     align-items: center;
     margin-inline: 1rem;
+    cursor: pointer;
 }
 
 .TodoContent{
@@ -134,6 +140,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.darkShadow{
+    box-shadow: 0px 0px 6px 0px hsl(235, 24%, 19%);
+}
+
+.lightShadow{
+    box-shadow: 0px 0px 6px 0px hsl(236, 9%, 61%);
 }
 
 .mobileLinks{
