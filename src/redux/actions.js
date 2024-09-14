@@ -36,7 +36,7 @@ export const createUser = (credentials) => {
     return async (dispatch) => {
         dispatch(setLoading(true));
         try {
-            const response = await axios.post('https://todo-backend-v2.vercel.app/api/auth/register', credentials);
+            const response = await axios.post('https://todo-backend-mu-five.vercel.app/api/auth/register', credentials);
             if (!response.data.error) {
                 dispatch(setUser(response.data.user));
                 dispatch(setAuthenticated(true));
@@ -60,7 +60,7 @@ export const createUser = (credentials) => {
 export const checkAuth = () => {
     return async (dispatch) => {
         try {
-            const res = await axios.get(`https://todo-backend-v2.vercel.app/api/auth/authenticate`, {
+            const res = await axios.get(`https://todo-backend-mu-five.vercel.app/api/auth/authenticate`, {
                 withCredentials: true
             });
             dispatch(setUser(res.data.user));
@@ -78,7 +78,12 @@ export const login = (credentials) => {
     return async (dispatch) => {
         dispatch(setLoading(true));
         try {
-            const response = await axios.post("https://todo-backend-v2.vercel.app/api/auth/login", credentials);
+            const response = await axios.post("https://todo-backend-mu-five.vercel.app/api/auth/login",
+                credentials,
+                {
+                    withCredentials: true,
+                }
+            );
             if (!response.data.error) {
                 dispatch(setUser(response.data.user));
                 dispatch(setAuthenticated(true));
@@ -102,7 +107,7 @@ export const getTodos = (user_id) => {
     return async (dispatch) => {
         dispatch(setLoading(true))
         try {
-            const response = await axios.get('https://todo-backend-v2.vercel.app/api/todo/' + user_id)
+            const response = await axios.get('https://todo-backend-mu-five.vercel.app/api/todo/' + user_id)
             dispatch(setTodos(response.data.todos))
         }catch (err) {
             console.error('Error:', err);
@@ -115,7 +120,7 @@ export const getTodos = (user_id) => {
 export const addTodo = (user_id, description) => {
     return async (dispatch) => {
         dispatch(setLoading(true));
-        await axios.post('https://todo-backend-v2.vercel.app/api/todo/' + user_id, { description }).then(response => {
+        await axios.post('https://todo-backend-mu-five.vercel.app/api/todo/' + user_id, { description }).then(response => {
             console.log(response);
         }).catch(err =>{
             console.error('Error:', err);
@@ -128,7 +133,7 @@ export const addTodo = (user_id, description) => {
 export const deleteTodo = (user_id, todo_id) => {
     return async (dispatch) => {
         dispatch(setLoading(true))
-        await axios.delete('https://todo-backend-v2.vercel.app/api/todo/' + user_id + '/' + todo_id).then(response => {
+        await axios.delete('https://todo-backend-mu-five.vercel.app/api/todo/' + user_id + '/' + todo_id).then(response => {
             console.log(response);
         }).catch(err =>{
             console.error('Error:', err);
@@ -141,7 +146,7 @@ export const deleteTodo = (user_id, todo_id) => {
 export const deleteDoneTodos = (user_id) => {
     return async (dispatch) => {
         dispatch(setLoading(true))
-        await axios.delete('https://todo-backend-v2.vercel.app/api/todo/allCompleted/' + user_id ).then(response => {
+        await axios.delete('https://todo-backend-mu-five.vercel.app/api/todo/allCompleted/' + user_id ).then(response => {
             console.log(response);
         }).catch(err => {
             console.error('Error:', err);
@@ -153,7 +158,7 @@ export const deleteDoneTodos = (user_id) => {
 
 export const handleCheck = (user_id, todo_id, completed) => {
     return async (dispatch) => {
-        await axios.put(`https://todo-backend-v2.vercel.app/api/todo/api/todo/completed/${user_id}/${todo_id}`, { completed })
+        await axios.put(`https://todo-backend-mu-five.vercel.app/api/todo/api/todo/completed/${user_id}/${todo_id}`, { completed })
             .then(response => {
                 console.log(response);
         }).catch(err =>{
