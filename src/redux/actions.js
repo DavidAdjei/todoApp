@@ -81,7 +81,7 @@ export const login = (credentials) => {
             const response = await axios.post("https://todo-backend-v2.vercel.app/api/auth/login", credentials);
             if (!response.data.error) {
                 dispatch(setUser(response.data.user));
-                dispatch(setToken(response.data.token));
+                dispatch(setAuthenticated(true));
                 dispatch(setErrors(null));
                 return Promise.resolve();
             } else {
@@ -153,8 +153,9 @@ export const deleteDoneTodos = (user_id) => {
 
 export const handleCheck = (user_id, todo_id, completed) => {
     return async (dispatch) => {
-        await axios.put(`https://todo-backend-v2.vercel.app/api/todo/api/todo/completed/${user_id}/${todo_id}`, {completed}).then(response => {
-            console.log(response);
+        await axios.put(`https://todo-backend-v2.vercel.app/api/todo/api/todo/completed/${user_id}/${todo_id}`, { completed })
+            .then(response => {
+                console.log(response);
         }).catch(err =>{
             console.error('Error:', err);
         })
