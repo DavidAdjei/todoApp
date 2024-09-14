@@ -1,9 +1,9 @@
-import { SET_USER, SET_TODOS, SET_TOKEN, SET_THEME, SET_ERRORS, SET_LOADING } from "./constants"
+import { SET_USER, SET_TODOS, SET_THEME, SET_ERRORS, SET_LOADING, SET_AUTH } from "./constants"
 
 const initialState = {
     todos: [],
     user: null,
-    token: null,
+    isAuth: false,
     theme: 'light',
     loading: false,
     testingError: null
@@ -20,10 +20,10 @@ export function reducer(state = initialState, action) {
                 ...state,
                 user: action.payload
             }
-        case SET_TOKEN:
+        case SET_AUTH:
             return {
                 ...state,
-                token: action.payload
+                isAuth: action.payload
             }
         case SET_THEME:
             return {

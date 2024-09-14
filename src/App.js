@@ -5,17 +5,23 @@ import Navbar from './components/NavBar';
 import Register from './Pages/Register';
 import './App.css';
 // import { useTheme } from './theme/theme';
-import { getTodos, setTheme, setTodos } from './redux/actions';
+import { getTodos, setTheme, setTodos, checkAuth } from './redux/actions';
 import Todos from './Pages/Todos';
 import Login from './Pages/Login';
 
 
-function App({user, theme, setTheme, token}) {
-
+function App({theme, setTheme, isAuth, checkAuth}) {
   useEffect(() => {
     const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
     setTheme(prefersDarkMode ? 'dark' : 'light');
-  }, [setTheme])
+    checkAuth()
+          .then((res) => {
+            console.log(res)
+          })
+          .catch((e) => {
+            console.log(e)
+          });
+  }, [setTheme, checkAuth])
   
   const [clicked, setClicked] = useState(false);
   const toggleTheme = () => {
@@ -30,13 +36,11 @@ function App({user, theme, setTheme, token}) {
           toggleTheme={toggleTheme}
         />
         <Routes>
-          <Route exact path='/' element={user && token ? <Todos setClicked={setClicked} clicked={clicked} /> : <Navigate to='/login'/>} />
-          <Route exact path='/register' element={user && token ? <Navigate to='/'/> : <Register />} /> 
-          <Route exact path='/login' element={user && token ? <Navigate to='/'/> : <Login />}/> 
+          <Route exact path='/' element={isAuth ? <Todos setClicked={setClicked} clicked={clicked} /> : <Navigate to='/login'/>} />
+          <Route exact path='/register' element={isAuth ? <Navigate to='/'/> : <Register />} /> 
+          <Route exact path='/login' element={isAuth ? <Navigate to='/'/> : <Login />}/> 
         </Routes>
       </div>
-      
-      
     </main>
   );
 }
@@ -45,7 +49,7 @@ const mapStateToProps = (state) => ({
   todos: state.todos,
   user: state.user,
   theme: state.theme,
-  token: state.token
+  isAuth: state.isAuth
 })
 
-export default connect(mapStateToProps, {setTheme, setTodos, getTodos})(App);
+export default connect(mapStateToProps, {setTheme, setTodos, getTodos,checkAuth})(App);

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SET_TODOS, SET_USER, SET_TOKEN, SET_THEME, SET_LOADING, SET_ERRORS } from "./constants";
+import { SET_TODOS, SET_USER, SET_AUTH, SET_THEME, SET_LOADING, SET_ERRORS } from "./constants";
 
 export const setTodos = (todos) => ({
     type: SET_TODOS,
@@ -11,9 +11,9 @@ export const setUser = (user) => ({
     payload: user
 })
 
-export const setToken = (token) => ({
-    type: SET_TOKEN,
-    payload: token
+export const setAuthenticated = (bool) => ({
+    type: SET_AUTH,
+    payload: bool
 })
 
 export const setTheme = (theme) => ({
@@ -39,7 +39,7 @@ export const createUser = (credentials) => {
             const response = await axios.post('https://todo-backend-v2.vercel.app/api/auth/register', credentials);
             if (!response.data.error) {
                 dispatch(setUser(response.data.user));
-                dispatch(setToken(response.data.token));
+                dispatch(setAuthenticated(true));
                 dispatch(setErrors(null)); 
                 dispatch(setLoading(false));
                 return Promise.resolve();
@@ -56,6 +56,24 @@ export const createUser = (credentials) => {
         }
     }
 }
+
+export const checkAuth = () => {
+    return async (dispatch) => {
+        try {
+            const res = await axios.get(`https://todo-backend-v2.vercel.app/api/auth/authenticate`, {
+                withCredentials: true
+            });
+            dispatch(setUser(res.data.user));
+            dispatch(setAuthenticated(true));
+            return Promise.resolve(res.data);
+        } catch (err) {
+            dispatch(setUser(null));
+            dispatch(setAuthenticated(false));
+            return Promise.reject(err.response.data);
+        }
+    }
+}
+
 export const login = (credentials) => {
     return async (dispatch) => {
         dispatch(setLoading(true));
@@ -135,7 +153,7 @@ export const deleteDoneTodos = (user_id) => {
 
 export const handleCheck = (user_id, todo_id, completed) => {
     return async (dispatch) => {
-        await axios.put(`${process.env.REACT_APP_SERVER}/api/todo/completed/${user_id}/${todo_id}`, {completed}).then(response => {
+        await axios.put(`https://todo-backend-v2.vercel.app/api/todo/api/todo/completed/${user_id}/${todo_id}`, {completed}).then(response => {
             console.log(response);
         }).catch(err =>{
             console.error('Error:', err);
