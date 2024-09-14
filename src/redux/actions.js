@@ -36,7 +36,7 @@ export const createUser = (credentials) => {
     return async (dispatch) => {
         dispatch(setLoading(true));
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/register', credentials);
+            const response = await axios.post('https://todo-backend-v2.vercel.app/api/auth/register', credentials);
             if (!response.data.error) {
                 dispatch(setUser(response.data.user));
                 dispatch(setToken(response.data.token));
@@ -60,7 +60,7 @@ export const login = (credentials) => {
     return async (dispatch) => {
         dispatch(setLoading(true));
         try {
-            const response = await axios.post("http://localhost:5000/api/auth/login", credentials);
+            const response = await axios.post("https://todo-backend-v2.vercel.app/api/auth/login", credentials);
             if (!response.data.error) {
                 dispatch(setUser(response.data.user));
                 dispatch(setToken(response.data.token));
@@ -84,7 +84,7 @@ export const getTodos = (user_id) => {
     return async (dispatch) => {
         dispatch(setLoading(true))
         try {
-            const response = await axios.get('http://localhost:5000/api/todo/' + user_id)
+            const response = await axios.get('https://todo-backend-v2.vercel.app/api/todo/' + user_id)
             dispatch(setTodos(response.data.todos))
         }catch (err) {
             console.error('Error:', err);
@@ -97,7 +97,7 @@ export const getTodos = (user_id) => {
 export const addTodo = (user_id, description) => {
     return async (dispatch) => {
         dispatch(setLoading(true));
-        await axios.post('http://localhost:5000/api/todo/' + user_id, { description }).then(response => {
+        await axios.post('https://todo-backend-v2.vercel.app/api/todo/' + user_id, { description }).then(response => {
             console.log(response);
         }).catch(err =>{
             console.error('Error:', err);
@@ -110,7 +110,7 @@ export const addTodo = (user_id, description) => {
 export const deleteTodo = (user_id, todo_id) => {
     return async (dispatch) => {
         dispatch(setLoading(true))
-        await axios.delete('http://localhost:5000/api/todo/' + user_id + '/' + todo_id).then(response => {
+        await axios.delete('https://todo-backend-v2.vercel.app/api/todo/' + user_id + '/' + todo_id).then(response => {
             console.log(response);
         }).catch(err =>{
             console.error('Error:', err);
@@ -123,7 +123,7 @@ export const deleteTodo = (user_id, todo_id) => {
 export const deleteDoneTodos = (user_id) => {
     return async (dispatch) => {
         dispatch(setLoading(true))
-        await axios.delete('http://localhost:5000/api/todo/allCompleted/' + user_id ).then(response => {
+        await axios.delete('https://todo-backend-v2.vercel.app/api/todo/allCompleted/' + user_id ).then(response => {
             console.log(response);
         }).catch(err => {
             console.error('Error:', err);
@@ -135,7 +135,7 @@ export const deleteDoneTodos = (user_id) => {
 
 export const handleCheck = (user_id, todo_id, completed) => {
     return async (dispatch) => {
-        await axios.put('http://localhost:5000/api/todo/completed/' + user_id + '/' + todo_id, {completed}).then(response => {
+        await axios.put(`${process.env.REACT_APP_SERVER}/api/todo/completed/${user_id}/${todo_id}`, {completed}).then(response => {
             console.log(response);
         }).catch(err =>{
             console.error('Error:', err);
