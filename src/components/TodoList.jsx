@@ -1,24 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TodoItem from './TodoItem';
-import { useTheme } from '../theme/theme';
+import { connect } from 'react-redux';
+import { deleteDoneTodos, deleteTodo, getTodos, handleCheck, setTodos } from '../redux/actions';
 
-function TodoList({ todos, completeTodo, setTodos, selectedTodo, deleteSelectedTodo }) {
-  const remainingTodos = todos.filter((todo) => !todo.completed);
-  const removeCompletedTodos = () => {
-    const incompleteTodos = todos.filter((todo) => !todo.completed);
-    setTodos(incompleteTodos);
-  };
-
-  const [theme] = useTheme();
-
+function TodoList({ todos, theme, user, getTodos, deleteTodo, handleCheck, deleteDoneTodos }) {
   const [filter, setFilter] = useState('All'); 
+
+  useEffect(() => {
+    getTodos(user.id);
+  },[getTodos, user])
 
   let todosToDisplay = todos;
 
   if (filter === 'Active') {
-    todosToDisplay = todos.filter((todo) => !todo.completed);
+    todosToDisplay = todos.filter((todo) => !todo.is_completed);
   } else if (filter === 'Complete') {
-    todosToDisplay = todos.filter((todo) => todo.completed);
+    todosToDisplay = todos.filter((todo) => todo.is_completed);
+  } 
+
+  const onCheck = (isChecked, todo_id) => {
+    if (isChecked === 0) {
+      handleCheck(user.id, todo_id, true ).then(() => {
+        getTodos(user.id)
+      })
+    } else {
+      handleCheck(user.id, todo_id, false).then(() => {
+        getTodos(user.id)
+      })
+    }
   }
 
   return (
@@ -28,23 +37,21 @@ function TodoList({ todos, completeTodo, setTodos, selectedTodo, deleteSelectedT
           {todosToDisplay.map((todo, index) => (
             <TodoItem
               key={index}
-              text={todo.name}
-              completed={todo.completed}
-              onComplete={() => completeTodo(index)}
-              select={() => selectedTodo(index)}
-              click = {todo.selected}
-              onDelete={() => deleteSelectedTodo(index)}
+              text={todo.description}
+              completed={todo.is_completed === 0 ? false : true}
+              onComplete={()=> onCheck(todo.is_completed, todo.id)}
+              onDelete={()=> {deleteTodo(user.id, todo.id).then(()=> getTodos(user.id))}}
             />
           ))}
         </div>
         <div className={`manipulate ${theme}Form`}>
-          <p>{remainingTodos.length} items left</p>
+          <p> {todosToDisplay.length} items left</p>
           <ul className={`links ${theme}hover`}>
             <li onClick={() => setFilter('All')} className={`link ${filter=== 'All' ? 'active' : ''} ${theme}Hover`}>All</li>
             <li onClick={() => setFilter('Active')} className={`link ${filter=== 'Active' ? 'active' : ''} ${theme}Hover`}>Active</li>
             <li onClick={() => setFilter('Complete')} className={`link ${filter=== 'Complete' ? 'active' : ''} ${theme}Hover`}>Complete</li>
           </ul>
-          <p onClick={removeCompletedTodos} className='remove'>Clear Completed</p>
+          <p onClick={()=> {deleteDoneTodos(user.id).then(()=> getTodos(user.id))}}  className='remove'>Clear Completed</p>
         </div>
       </div>
       
@@ -57,4 +64,10 @@ function TodoList({ todos, completeTodo, setTodos, selectedTodo, deleteSelectedT
   );
 }
 
-export default TodoList;
+const mapStateToProps = state => ({
+  todos: state.todos,
+  user: state.user,
+  theme: state.theme
+})
+
+export default connect(mapStateToProps, {getTodos, setTodos, deleteTodo, handleCheck, deleteDoneTodos })(TodoList);

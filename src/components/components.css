@@ -1,156 +1,158 @@
 /* Nav Bar Styles */
 
-.Navbar{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    height: 5rem;
-    align-items: center;
+.Navbar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 5rem;
+  align-items: center;
 }
 
-.Navbar h1{
-    font-size: 2.5rem;
-    color: white;
-    letter-spacing: 1.3rem;
+.Navbar h1 {
+  font-size: 2.5rem;
+  color: white;
+  letter-spacing: 1.3rem;
 }
 
-.Navbar button{
-    border-radius: 50%;
-    background-color: transparent;
-    border: none;
+.Navbar button {
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
 }
 
 /* InputField Styles */
 
-.TodoForm{
-    width: 100%;
-    height: 4.5rem;
-    border-radius: .1rem;
-    display: flex;
-    align-items: center;
-    border-radius: .5rem;
+.TodoForm {
+  width: 100%;
+  height: 4.5rem;
+  border-radius: 0.1rem;
+  display: flex;
+  align-items: center;
+  border-radius: 0.5rem;
 }
 
-.inputField{
-    width: 85%;
-    height: 100%;
-    border: none;
-    background-color: transparent;
-    display: flex;
-    align-items: center;
+.inputField {
+  width: 85%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
 }
 
-.darkField:focus{
-    outline: none;
-    color: hsl(0, 0%, 98%);
+.darkField:focus,
+.darkField:active {
+  outline: none;
+  color: hsl(0, 0%, 98%) !important;
 }
 
-.lightField:focus{
-    outline: none;
-    color: hsl(235, 19%, 35%);
+.lightField:focus,
+.lightField:active {
+  outline: none;
+  color: hsl(235, 19%, 35%);
 }
 
 /* Todo List styles */
 
-.TodoItem button{
-    background-color: unset;
-    border: none;
-    cursor: pointer;
-    margin-inline: 1rem;
-    width: 1rem;
-    height: 1rem;
+.TodoItem button {
+  background-color: unset;
+  border: none;
+  cursor: pointer;
+  margin-inline: 1rem;
+  width: 1rem;
+  height: 1rem;
 }
 
-.TodoItem button img{
-    width: 100%;
-    height: 100%;
+.TodoItem button img {
+  width: 100%;
+  height: 100%;
 }
 
-.TodoItem{
-    width: 100%;
-    height: 4.5rem;
-    border-radius: .1rem;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid hsl(234deg 2.66% 30.06%);
+.TodoItem {
+  width: 100%;
+  height: 4.5rem;
+  border-radius: 0.1rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid hsl(234deg 2.66% 30.06%);
 }
 
-.TodoItem:hover{
-    cursor: pointer;
+.TodoItem:hover {
+  cursor: pointer;
 }
 
-.todoComponent{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+.todoComponent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.completed{
-    text-decoration: line-through;
-    color: hsl(234deg 3.38% 58.59%);
+.completed {
+  text-decoration: line-through;
+  color: hsl(234deg 3.38% 58.59%);
 }
 
-.manipulate{
-    display: flex;
-    height: 4rem;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-    color: hsl(234deg 3.38% 58.59%);
-    padding-inline: 1rem;
-    border-radius: 0rem 0rem .5rem .5rem;
+.manipulate {
+  display: flex;
+  height: 4rem;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  color: hsl(234deg 3.38% 58.59%);
+  padding-inline: 1rem;
+  border-radius: 0rem 0rem 0.5rem 0.5rem;
 }
 
-.manipulate p{
-    color: hsl(234deg 3.38% 58.59%);
+.manipulate p {
+  color: hsl(234deg 3.38% 58.59%);
 }
 
-.links{
-    display: flex;
-    gap: 1rem;
-    color: hsl(234deg 3.38% 58.59%);
+.links {
+  display: flex;
+  gap: 1rem;
+  color: hsl(234deg 3.38% 58.59%);
 }
 
-.links li{
-    list-style: none;
+.links li {
+  list-style: none;
 }
 
-.darkHover:hover{
-    color: hsl(0, 0%, 98%);
+.darkHover:hover {
+  color: hsl(0, 0%, 98%);
 }
 
-.lightHover:hover{
-    color: hsl(235, 19%, 35%);
+.lightHover:hover {
+  color: hsl(235, 19%, 35%);
 }
 
-.checkContainer{
-    width: 2rem;
-    height: 2rem;
-    border: 1px solid hsl(234deg 3.38% 58.59%);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-inline: 1rem;
-    cursor: pointer;
+.checkContainer {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid hsl(234deg 3.38% 58.59%);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-inline: 1rem;
+  cursor: pointer;
 }
 
-.TodoContent{
-    width: 90%;
-    display: flex;
-    align-items: center;
+.TodoContent {
+  width: 90%;
+  display: flex;
+  align-items: center;
 }
 
-.darkShadow{
-    box-shadow: 0px 0px 6px 0px hsl(235, 24%, 19%);
+.darkShadow {
+  box-shadow: 0px 0px 6px 0px hsl(235, 24%, 19%);
 }
 
-.lightShadow{
-    box-shadow: 0px 0px 6px 0px hsl(236, 9%, 61%);
+.lightShadow {
+  box-shadow: 0px 0px 6px 0px hsl(236, 9%, 61%);
 }
 
-.mobileLinks{
-    display: none;
+.mobileLinks {
+  display: none;
 }
 
 .checkmark {
@@ -158,105 +160,175 @@
   display: flex;
   width: 20%;
   height: 40%;
-  border-right: 2px solid #fff; 
+  border-right: 2px solid #fff;
   border-bottom: 2px solid #fff;
-  transform: rotate(45deg); 
+  transform: rotate(45deg);
 }
 
-.TodoList{
-    overflow-y: auto;
-    max-height: calc(100vh - 25rem);
+.TodoList {
+  overflow-y: auto;
+  max-height: calc(100vh - 25rem);
 }
 
-.hide{
-    display: none;
+.hide {
+  display: none;
 }
 
 .completed .checkmark {
   display: block;
 }
 
-.checkBackground{
-    background: linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+.checkBackground {
+  background: linear-gradient(
+    to right,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
 }
 
-.link{
-    cursor: pointer;
+.link {
+  cursor: pointer;
 }
 
-.active{
-    color: hsl(220, 98%, 61%);
+.active {
+  color: hsl(220, 98%, 61%);
 }
 
-.remove{
-    cursor: pointer;
-    color: hsl(234deg 3.38% 58.59%);
+.remove {
+  cursor: pointer;
+  color: hsl(234deg 3.38% 58.59%);
 }
 
-.darkForm{
-    background-color: hsl(235, 24%, 19%);
-    color: hsl(234, 39%, 85%);
+.App .darkForm {
+  background-color: hsl(235, 24%, 19%);
+  color: hsl(234, 39%, 85%);
 }
 
-.lightForm{
-    background-color: hsl(0, 0%, 98%);
-    color: hsl(235, 19%, 35%);
+.App .lightForm {
+  background-color: hsl(0, 0%, 98%);
+  color: hsl(235, 19%, 35%);
+}
+
+/* Sign Up Page */
+
+.register {
+  width: 100%;
+  height: auto;
+  border-radius: 0.3rem;
+  align-items: center;
+  border-radius: 0.5rem;
+}
+
+.App .darkText {
+  color: hsl(234, 39%, 85%);
+}
+
+.App .lightText {
+  color: hsl(236, 59%, 18%);
+}
+
+.circleLogo {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  align-self: center;
+}
+
+.circleLogo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.register form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  padding: 2rem;
+  border-radius: 0.3rem;
+  width: 100%;
+}
+
+.register .inputFields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.register form h1 {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.register form .inputFields a {
+  color: rgb(13, 120, 241);
+  text-decoration: none;
+  align-self: center;
+}
+
+.register form .inputFields a:hover {
+  color: rgb(69, 177, 219);
+}
+
+.register .inputFields .error {
+  border: 1px solid red;
+  color: red;
+  border-radius: 0.3rem;
+  z-index: -0.1;
 }
 
 @media screen and (max-width: 60rem) {
-    .Navbar h1{
-        font-size: 2rem;
-    }
+  .Navbar h1 {
+    font-size: 2rem;
+  }
 
-    .TodoForm{
-        height: 4rem;
-    }
+  .TodoForm {
+    height: 4rem;
+  }
 
-    .checkContainer{
-        width: 1.5rem;
-        height: 1.5rem;
-    }
-    .TodoItem{
-        height: 4rem;
-    }
+  .checkContainer {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .TodoItem {
+    height: 4rem;
+  }
 
-    .manipulate p{
-        font-size: .9rem;
-    }
+  .manipulate p {
+    font-size: 0.9rem;
+  }
 
-    .manipulate{
-        border-radius: 0;
-    }
+  .manipulate {
+    border-radius: 0;
+  }
 
-    .manipulate .links{
-        display: none;
-    }
+  .manipulate .links {
+    display: none;
+  }
 
+  .mobileLinks {
+    display: flex;
+    gap: 1rem;
+    color: hsl(234deg 3.38% 58.59%);
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+  }
 
-    .mobileLinks{
-        display: flex;
-        gap: 1rem;
-        color: hsl(234deg 3.38% 58.59%);
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        height: 3rem;
-        margin-top: 1rem;
-        border-radius: .5rem;
-    }
+  .mobileLinks li {
+    list-style: none;
+  }
 
-    .mobileLinks li{
-        list-style: none;
-    }
-
-    .inputField{
-        font-size: .9rem;
-    }
+  .inputField {
+    font-size: 0.9rem;
+  }
 }
 
-@media screen and (max-height: 37rem){
-    .TodoList{
-        max-height: unset;
-    }
+@media screen and (max-height: 37rem) {
+  .TodoList {
+    max-height: unset;
+  }
 }
-

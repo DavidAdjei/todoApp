@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import './components.css';
 import IconCross from '../assets/images/icon-cross.svg';
-import { useTheme } from '../theme/theme';
+import { connect } from 'react-redux';
 
-function TodoItem({ text, completed, onComplete, onDelete }) {
+function TodoItem({ theme, text, completed, onComplete, onDelete }) {
   const [showDelete, setShowDelete] = useState(false);
-  const [theme] = useTheme();
 
   return (
     <div
@@ -26,4 +25,8 @@ function TodoItem({ text, completed, onComplete, onDelete }) {
   );
 }
 
-export default TodoItem;
+const mapStateToProps = (state) => ({
+  theme: state.theme
+})
+
+export default connect(mapStateToProps, {})(TodoItem);

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useTheme } from '../theme/theme';
+import { connect } from 'react-redux';
+import { addTodo, getTodos } from '../redux/actions';
 
-function TodoForm({ addTodo, setClicked, clicked }) {
+function TodoForm({ theme, addTodo, setClicked, clicked, getTodos, user }) {
   const [todoText, setTodoText] = useState('');
-  const [theme] = useTheme();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -11,8 +11,14 @@ function TodoForm({ addTodo, setClicked, clicked }) {
       alert('Can not submit empty todo')
     } else {
       setClicked(!clicked);
-      addTodo(todoText);
-      setTodoText('');
+      addTodo(user.id, todoText).then(() => {
+        getTodos(user.id);
+        setTodoText('');
+        setClicked(false)
+        
+      }).catch((err) => {
+        console.log(err)
+      });;
     }
     
   };
@@ -33,4 +39,9 @@ function TodoForm({ addTodo, setClicked, clicked }) {
   );
 }
 
-export default TodoForm;
+const mapStateToProps = (state) => ({
+  user: state.user,
+  theme: state.theme
+})
+
+export default connect(mapStateToProps, {addTodo, getTodos})(TodoForm);
